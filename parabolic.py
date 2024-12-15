@@ -1,12 +1,11 @@
 from kinematics import Vector, Point
-from simulation import Kinematics, simulation_step
+from simulation import Particle, simulation_step
 
-particle = Kinematics(position=Point(0,0,0), velocity=Vector(1,0,0))
-mass = 1.
+particle = Particle(position=Point(0,0,0), velocity=Vector(1,0,0), mass=1.)
 
 #for the first second, apply a constant acceleration in y
-impulse = Vector(0,20,0)*mass
-gravity = Vector(0,-10,0)*mass
+impulse = Vector(0,20,0)*particle.mass
+gravity = Vector(0,-10,0)*particle.mass
 time = 0
 deltaT = 0.01 
 while(particle.position.y >= 0.):
@@ -15,5 +14,5 @@ while(particle.position.y >= 0.):
         force = impulse + gravity
     else:
         force = gravity
-    particle = simulation_step(deltaT=deltaT, previous=particle, mass=mass, force=force)
+    particle = simulation_step(deltaT=deltaT, previous=particle, force=force)
     print(f"{particle.position.x}, {particle.position.y}")
