@@ -22,6 +22,8 @@ class Vector (object):
         return self.x==other.x and self.y==other.y and self.z==other.z
     def __repr__(self):
         return f'Vector({self.x}, {self.y}, {self.z})'
+    def unit(self):
+        return self/self.magnitude()
 
 class Point (object):
     def __init__(self,x:float,y:float,z:float = 0.):
@@ -100,6 +102,9 @@ if __name__ == "__main__":
             self.assertEqual(vAdd.x,-2)
             self.assertEqual(vAdd.y,-1)
             self.assertEqual(vAdd.z,0)
+        def testunit(self):
+            v=Vector(2,0,0)
+            self.assertEqual(v.unit(),Vector(1,0,0))
     unittest.main()
         
         
